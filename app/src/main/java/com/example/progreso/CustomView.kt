@@ -51,7 +51,21 @@ class CustomView @JvmOverloads constructor(
             drawArrow(canvas, startX, 0f, startX + arrowWidth, height.toFloat())
         }
     }
+    private fun drawArrow(canvas: Canvas, fromX: Float, fromY: Float, toX: Float, toY: Float) {
+        val path = Path()
+        val halfHeight = height / 2.2f
+        val arrowWidth = (toX - fromX) / 1.2f // Reducir el ancho de la flecha a la mitad
 
+        // Define los puntos de la flecha
+        path.moveTo(fromX, fromY)
+        path.lineTo(fromX + arrowWidth, halfHeight)
+        path.lineTo(fromX, toY)
+        path.lineTo(fromX + arrowWidth / 2, toY)
+        path.lineTo(fromX + arrowWidth + arrowWidth / 2, halfHeight)
+        path.lineTo(fromX + arrowWidth / 2, fromY)
+        path.close()
+
+        canvas.drawPath(path, paint)
 
     }
 }
